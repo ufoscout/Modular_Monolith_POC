@@ -31,7 +31,6 @@
 		<module>currency</module>
 		<module>exchangeRate</module>
 		<module>frontend</module>
-        <module>frontendOld</module>
 		<module>build</module>
 	</modules>
 

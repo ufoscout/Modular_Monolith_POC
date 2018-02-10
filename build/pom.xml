@@ -31,7 +31,7 @@
 		</dependency>
 		<dependency>
 			<groupId>com.modular</groupId>
-			<artifactId>frontendOld</artifactId>
+			<artifactId>frontend</artifactId>
 			<version>${project.version}</version>
 		</dependency>
 	</dependencies>

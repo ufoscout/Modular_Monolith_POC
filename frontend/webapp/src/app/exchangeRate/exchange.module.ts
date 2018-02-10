@@ -23,8 +23,8 @@ import {DisplayComponent} from './display/display.component'
     ExchangeService
   ],
   declarations: [
-    ConverterComponent,
-    DisplayComponent
+    DisplayComponent,
+    ConverterComponent    
   ]
 })
 export class ExchangeModule {}
