@@ -15,8 +15,15 @@
 	<packaging>pom</packaging>
 
 	<properties>
+		<!-- Project global configuration -->
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<java.version>1.8</java.version>
+
+		<!-- Plugin versions -->
+		<docker-maven-plugin.version>1.0.0</docker-maven-plugin.version>
+		<eirslett.frontend-maven-plugin>1.6</eirslett.frontend-maven-plugin>
+		<nodejs.version>v8.9.1</nodejs.version>
+
 	</properties>
 
 	<modules>
@@ -31,9 +38,14 @@
 		<pluginManagement>
 			<plugins>
 				<plugin>
+					<groupId>com.github.eirslett</groupId>
+					<artifactId>frontend-maven-plugin</artifactId>
+					<version>${eirslett.frontend-maven-plugin}</version>
+				</plugin>
+				<plugin>
 					<groupId>com.spotify</groupId>
 					<artifactId>docker-maven-plugin</artifactId>
-					<version>0.3.4</version>
+					<version>${docker-maven-plugin.version}</version>
 					<configuration>
 						<skipDockerBuild>true</skipDockerBuild>
 					</configuration>

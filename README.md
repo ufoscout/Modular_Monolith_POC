@@ -86,7 +86,7 @@ Spring Cloud can be introduced used to take advantage of the ready to use compon
 
 Extract the “Deployment/com.modular.build.jar” file from the provided zip archive to a local folder. Then from that folder execute the command:
 
-java -jar com.modular.build.jar
+> java -jar com.modular.build.jar
 
 This will start a web server on port 8080. To start using the application, open a browser (the application has been tested with Firefox and Chrome) and access the URL:
 
@@ -96,11 +96,11 @@ Alternatively, the application can be deployed as a docker image.
 
 A docker image can be created from the source code executing the following command from the “Code” folder:
 
-mvn clean package docker:build
+> mvn clean package docker:build
 
-This create a docker image named “modular/build”, it can be locally started with:
+This create a docker image named “modular/build”. A new instance can be started locally with:
 
-docker run -p 8080:8080 modular/build
+> docker run -p 8080:8080 modular/build
 
 
 # To be implemented and future improvements
