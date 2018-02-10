@@ -17,11 +17,12 @@ export class CurrenciesService {
   /**
    * Server call to retrieve the full list of available currencies
    */
-  getCurrencies(): Promise<Currency[]> {
+  getCurrencies(filter: string): Promise<Currency[]> {
     console.log(`Get currencies list`);
 
     let params: URLSearchParams = new URLSearchParams();
     params.set('_', '' + Date.now());
+    params.set('filter', filter);
     
     return this.http.get(this.currenciesControllerPath, {
       search: params

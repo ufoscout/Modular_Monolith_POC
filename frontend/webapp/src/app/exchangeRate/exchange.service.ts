@@ -18,11 +18,12 @@ export class ExchangeService {
   /**
    * Server call to retrieve the exchange rates
    */
-  getExchangeRates(): Promise<ExchangeRate[]> {
+  getExchangeRates(currencies: string[]): Promise<ExchangeRate[]> {
     console.log(`Get exchange rates`);
 
     let params: URLSearchParams = new URLSearchParams();
     params.set('_', '' + Date.now());
+    params.set('currencies', currencies.join(','))
     
     return this.http.get(this.controllerPath + "/rates", {
         search: params

@@ -1,1 +1,54 @@
-Exchange Rate Display component
+<h2>Currency Exchange Rates</h2>
+
+<div class="row">
+  <div class="col">
+    Filter: <input type="text" [(ngModel)]="filter" (keyup)='refresh()'/>
+  </div>
+  <div class="col">
+    <button (click)="refresh()" class="btn pull-right">Refresh</button>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col">
+
+    <div class="d-none d-sm-block" >
+      <table class="table table-striped table-hover">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th *ngFor="let currencyTo of (currencyList)" >{{currencyTo.id}}</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let currencyFrom of filteredCurrencyList">
+            <th><a href="#/converter?from={{currencyFrom.id}}">{{currencyFrom.id}}</a></th>
+            <td *ngFor="let currencyTo of currencyList">
+                <a href="#/converter?from={{currencyFrom.id}}&to={{currencyTo.id}}">{{getExchangeRate(currencyFrom.id, currencyTo.id)}}</a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="d-block d-sm-none" >
+      <table class="table table-striped">
+        <thead>
+        <tr>
+          <th>From</th>
+          <th>To</th>
+          <th>Rate</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let rate of exchangeRates">
+          <th>{{rate.from}}</th>
+          <th>{{rate.to}}</th>
+          <th>{{rate.exchangeRate}}</th>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+
+  </div>
+</div>
