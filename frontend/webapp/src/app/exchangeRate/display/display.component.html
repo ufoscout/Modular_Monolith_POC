@@ -1,3 +1,4 @@
+
 <h2>Currency Exchange Rates</h2>
 
 <div class="row">
@@ -22,9 +23,15 @@
         </thead>
         <tbody>
           <tr *ngFor="let currencyFrom of filteredCurrencyList">
-            <th><a href="#/converter?from={{currencyFrom.id}}">{{currencyFrom.id}}</a></th>
+            <th>
+                <a [routerLink]="['/exchange-rate-convert']" [queryParams]="{from: currencyFrom.id}">
+                    {{currencyFrom.id}}
+                </a>
+            </th>
             <td *ngFor="let currencyTo of currencyList">
-                <a href="#/converter?from={{currencyFrom.id}}&to={{currencyTo.id}}">{{getExchangeRate(currencyFrom.id, currencyTo.id)}}</a>
+                <a [routerLink]="['/exchange-rate-convert']" [queryParams]="{from: currencyFrom.id, to: currencyTo.id}">
+                    {{getExchangeRate(currencyFrom.id, currencyTo.id)}}
+                </a>
             </td>
           </tr>
         </tbody>
