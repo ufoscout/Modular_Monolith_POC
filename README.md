@@ -71,7 +71,7 @@ The source code is organized as a multi module maven project with five children:
 1.  **frontend**: it contains the code of the frontend. It is built with nodejs. This module has no external java dependencies. It does not depend on other modules. The idea is that this module can be developed by a dedicated team with specific JavaScript expertise. The needed data is obtained through their REST endpoints exposed by the other two modules.
 1.  **build**: this module imports currency, exchangeRate and frontend and packages them in a single deployable artifact.
 
-In conclusion, the three modules “common”, “currency” and “exchangeRate” contain the business logic of the server part; the “frontend” module contains the web client code and, finally, the “build” module collects all the needed dependencies (i.e. common, currency, exchangeRate and frontend) and package all of them in a single deployable artifact. This artifact is a runnable jar file with an embedded Tomcat servlet container that can be started with a simple “java -jar com.currency.build.jar” command.
+In conclusion, the three modules “common”, “currency” and “exchangeRate” contain the business logic of the server part; the “frontend” module contains the web client code and, finally, the “build” module collects all the needed dependencies (i.e. common, currency, exchangeRate and frontend) and package all of them in a single deployable artifact. This artifact is a runnable jar file with an embedded Tomcat servlet container that can be started with a simple “java -jar com.modular.build.jar” command.
 
 Even if the frontend is not written in Java, to simplify the packaging and the deployment process, the web resources (e.g. JS, html) are packaged as a jar library and managed as a typical maven dependency.
 
@@ -84,9 +84,9 @@ Spring Cloud can be introduced used to take advantage of the ready to use compon
 
 ## Deployment strategy
 
-Extract the “Deployment/com.currency.build.jar” file from the provided zip archive to a local folder. Then from that folder execute the command:
+Extract the “Deployment/com.modular.build.jar” file from the provided zip archive to a local folder. Then from that folder execute the command:
 
-java -jar com.currency.build.jar
+java -jar com.modular.build.jar
 
 This will start a web server on port 8080. To start using the application, open a browser (the application has been tested with Firefox and Chrome) and access the URL:
 
@@ -98,9 +98,9 @@ A docker image can be created from the source code executing the following comma
 
 mvn clean package docker:build
 
-This create a docker image named “currency/build”, it can be locally started with:
+This create a docker image named “modular/build”, it can be locally started with:
 
-docker run -p 8080:8080 currency/build
+docker run -p 8080:8080 modular/build
 
 
 # To be implemented and future improvements

@@ -1,0 +1,37 @@
+<?xml version="1.0"
+	  encoding="UTF-8"?>
+
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         							   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.2.xsd">
+
+	<changeSet id="0.0.1_EXCHANGE_RATE" author="francesco.cina">
+	  
+		<createTable tableName="CURRENCY_EXCHANGE_RATE">
+			<column name="FROM_CURRENCY" type="varchar(10)">
+				<constraints nullable="false" />
+			</column>
+			<column name="TO_CURRENCY" type="varchar(10)">
+				<constraints nullable="false" />
+			</column>
+			<column name="EXCHANGE_RATE" type="NUMERIC" />
+		</createTable>
+
+		<addPrimaryKey tableName="CURRENCY_EXCHANGE_RATE" 
+			columnNames="FROM_CURRENCY, TO_CURRENCY" constraintName="CURRENCY_EXCHANGE_RATE_PK" />
+
+		<createIndex tableName="CURRENCY_EXCHANGE_RATE" 
+			indexName="CURRENCY_EXCHANGE_RATE_CURRENCY_ONE_idx">
+			<column name="FROM_CURRENCY" />
+		</createIndex>
+
+		<loadData encoding="UTF-8"
+			  file="exchangeRate/db/changelog/exchange_rate.csv"
+			  separator=","
+			  tableName="CURRENCY_EXCHANGE_RATE">
+		</loadData>
+
+	</changeSet>
+
+</databaseChangeLog>
