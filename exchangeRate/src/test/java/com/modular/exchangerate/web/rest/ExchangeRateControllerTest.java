@@ -23,36 +23,35 @@ import java.util.List;
 
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.TestRestTemplate;
+import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.client.RestTemplate;
 
-import com.modular.WebTestBase;
+import com.modular.IntegrationTestBase;
 import com.modular.exchangerate.core.service.ExchangeRateService;
 import com.modular.exchangerate.core.service.dto.ExchangeRateDTO;
 
-public class ExchangeRateControllerTest extends WebTestBase {
+public class ExchangeRateControllerTest extends IntegrationTestBase {
 
 	@Autowired
 	private ExchangeRateService exchangeRateService;
 
     @Test
     public void testGetExchangeRate() throws Exception {
-		RestTemplate restTemplate = new TestRestTemplate();
-	    ResponseEntity<String> response = restTemplate.getForEntity(serverUrl + "/rest/exchangeRate/rates?currencies=USD,EUR", String.class);
+		final TestRestTemplate restTemplate = new TestRestTemplate();
+	    final ResponseEntity<String> response = restTemplate.getForEntity(serverUrl + "/rest/exchangeRate/rates?currencies=USD,EUR", String.class);
 	    assertEquals( HttpStatus.OK, response.getStatusCode());
 
 	    getLogger().info("Received: [{}]", response.getBody());
 
-	    List<ExchangeRateDTO> responseBody = fromJson(response.getBody(), List.class, ExchangeRateDTO.class);
+	    final List<ExchangeRateDTO> responseBody = fromJson(response.getBody(), List.class, ExchangeRateDTO.class);
 	    assertFalse(responseBody.isEmpty());
     }
 
     @Test
     public void testGetConvert() throws Exception {
-		RestTemplate restTemplate = new TestRestTemplate();
-	    ResponseEntity<BigDecimal> response = restTemplate.getForEntity(serverUrl + "/rest/exchangeRate/convert/USD/EUR/100", BigDecimal.class);
+		final TestRestTemplate restTemplate = new TestRestTemplate();
+	    final ResponseEntity<BigDecimal> response = restTemplate.getForEntity(serverUrl + "/rest/exchangeRate/convert/USD/EUR/100", BigDecimal.class);
 	    assertEquals( HttpStatus.OK, response.getStatusCode());
 
 	    getLogger().info("Received: [{}]", response.getBody());
