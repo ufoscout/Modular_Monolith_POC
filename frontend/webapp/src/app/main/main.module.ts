@@ -8,12 +8,15 @@ import {MainRoutingModule} from './main.routing';
 import {NavbarComponent} from './navbar/navbar.component';
 import {MainRootComponent} from './root/root.component';
 
+import {ExchangeModule} from '../exchangeRate/exchange.module'
+
 @NgModule({
   imports: [
     BrowserModule,
     NgbDropdownModule.forRoot(),
     NgbCollapseModule.forRoot(),
-    MainRoutingModule
+    MainRoutingModule,
+    ExchangeModule
   ],
   providers: [
   ],
