@@ -9,7 +9,7 @@
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
 
-	<artifactId>frontend</artifactId>
+	<artifactId>frontendOld</artifactId>
 	<packaging>jar</packaging>
 
 	<build>
@@ -17,6 +17,10 @@
 			<resource>
 				<directory>webapp/dist</directory>
 				<targetPath>META-INF/resources</targetPath>
+			</resource>
+			<resource>
+				<directory>webapp/bower_components/bootstrap/fonts</directory>
+				<targetPath>META-INF/resources/fonts</targetPath>
 			</resource>
 		</resources>
 		<plugins>
@@ -28,16 +32,18 @@
 				</configuration>
 				<executions>
 					<execution>
-						<id>install-node</id>
+						<id>install node and npm</id>
 						<goals>
 							<goal>install-node-and-npm</goal>
 						</goals>
 						<configuration>
-							<nodeVersion>${nodejs.version}</nodeVersion>
+							<nodeVersion>v4.0.0</nodeVersion>
+							<npmVersion>3.3.3</npmVersion>
 						</configuration>
 					</execution>
+
 					<execution>
-						<id>npm-install</id>
+						<id>npm install</id>
 						<goals>
 							<goal>npm</goal>
 						</goals>
@@ -45,61 +51,40 @@
 							<arguments>install</arguments>
 						</configuration>
 					</execution>
+
 					<execution>
-						<id>npm-tests</id>
-						<phase>test</phase>
+						<id>bower install</id>
 						<goals>
-							<goal>npm</goal>
+							<goal>bower</goal>
 						</goals>
 						<configuration>
-							<arguments>run test-single</arguments>
+							<arguments>install</arguments>
 						</configuration>
 					</execution>
+
 					<execution>
-						<id>npm-build</id>
+						<id>gulp build</id>
 						<goals>
-							<goal>npm</goal>
+							<goal>gulp</goal>
 						</goals>
 						<configuration>
-							<arguments>run build</arguments>
+							<arguments>build</arguments>
 						</configuration>
 					</execution>
+
+					<execution>
+						<id>gulp javascript tests</id>
+						<goals>
+							<goal>gulp</goal>
+						</goals>
+						<configuration>
+							<arguments>test</arguments>
+						</configuration>
+					</execution>
+ 
 				</executions>
 			</plugin>
 		</plugins>
 	</build>
-	<profiles>
-		<profile>
-			<id>cleanAll</id>
-            <!-- <activation>
-				<activeByDefault>true</activeByDefault>
-            </activation> -->
-			<build>
-				<plugins>
-					<plugin>
-						<artifactId>maven-clean-plugin</artifactId>
-						<configuration>
-							<filesets>
-								<fileset>
-									<directory>${basedir}/webapp/dist</directory>
-								</fileset>
-								<fileset>
-									<directory>${basedir}/webapp/node</directory>
-								</fileset>
-								<fileset>
-									<directory>${basedir}/webapp/node_modules</directory>
-								</fileset>
-								<fileset>
-									<directory>${basedir}/webapp/typings</directory>
-								</fileset>
-							</filesets>
-						</configuration>
-					</plugin>
-				</plugins>
-			</build>
-		</profile>
-		<profile>
-			<id>fast</id>
-		</profile>		
-	</profiles>
+
 </project>

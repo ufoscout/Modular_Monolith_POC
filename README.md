@@ -107,7 +107,7 @@ This create a docker image named “modular/build”. A new instance can be star
 
 ## Backend
 
-The solution is not tuned to be used in a production environment; for example, the cache manager is a NoOperationCache. To make it ready for production, specific Spring profiles should be created (e.g. one for development, one for local deploy with an external databse, one for AWS that uses Redis for the cache and Amazon RDS as database).
+The solution is not tuned to be used in a production environment; for example, the cache manager is a NoOperationCache. To make it ready for production, specific Spring profiles should be created (e.g. one for development, one for local deploy with an external database, one for AWS that uses Redis for the cache and Amazon RDS as database).
 
 In addition, different storage systems should be taken into account instead of a database. In fact, the main service of the currency module performs a sort of full text search on the database using the “like” SQL operator; this operator is particularly slow because it executes a full table scan on each execution. In case of big datasets or high load, the system would greatly benefit from a search engine like ElasticSearch..
 
