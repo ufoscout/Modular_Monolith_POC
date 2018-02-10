@@ -7,10 +7,10 @@ const appRoutes: Routes = [
 
 @NgModule({
   imports: [
-    RouterModule.forChild(appRoutes)
+    RouterModule.forRoot(appRoutes)
   ],
   exports: [
     RouterModule
   ]
 })
-export class MainRoutingModule {}
+export class AppRoutingModule {}
