@@ -28,7 +28,8 @@ The client is a Single Page web Application written in HTML 5 and JavaScript.
 
 The only requirement needed to deploy and start the solution is a properly configured JDK 8. In addition, the port 8080 of the target machine must be available.
 
-To build from the source code, maven 3 is additionally required (please note that on the first build the entire nodejs ecosystem is downloaded, this takes some minutes)
+To build from the source code, maven 3 is additionally required (please note that on the first build the entire nodejs ecosystem is downloaded, this takes some minutes).
+The maven build process executes the unit and integration tests; the latest Chrome browser is needed to execute the frontend tests in headless mode. 
 
 ## Technology stack
 
