@@ -28,18 +28,18 @@ public abstract class UnitTestBase {
 	@Before
 	public void setUpBeforeTest() {
 		startTime = new Date();
-		logger.info("==================================================================="); //$NON-NLS-1$
-		logger.info("BEGIN TEST " + name.getMethodName()); //$NON-NLS-1$
-		logger.info("==================================================================="); //$NON-NLS-1$
+		logger.info("==================================================================="); 
+		logger.info("BEGIN TEST " + name.getMethodName()); 
+		logger.info("==================================================================="); 
 	}
 
 	@After
 	public void tearDownAfterTest() {
 		final String time = new BigDecimal( new Date().getTime() - startTime.getTime() ).divide(new BigDecimal(1000)).toString();
-		logger.info("==================================================================="); //$NON-NLS-1$
-		logger.info("END TEST " + name.getMethodName()); //$NON-NLS-1$
-		logger.info("Execution time: " + time + " seconds"); //$NON-NLS-1$ //$NON-NLS-2$
-		logger.info("==================================================================="); //$NON-NLS-1$
+		logger.info("==================================================================="); 
+		logger.info("END TEST " + name.getMethodName()); 
+		logger.info("Execution time: " + time + " seconds");  
+		logger.info("==================================================================="); 
 	}
 
 	protected Logger getLogger() {
