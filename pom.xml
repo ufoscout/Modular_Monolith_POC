@@ -22,7 +22,7 @@
 		<!-- Plugin versions -->
 		<docker-maven-plugin.version>1.0.0</docker-maven-plugin.version>
 		<eirslett.frontend-maven-plugin>1.6</eirslett.frontend-maven-plugin>
-		<nodejs.version>v8.9.1</nodejs.version>
+		<nodejs.version>v8.9.4</nodejs.version>
 
 	</properties>
 
