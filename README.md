@@ -161,3 +161,8 @@ Among the many missing pieces, the frontend misses:
 - A meaningful architecture (e.g. Flux, redux)
 - a good test coverage
 - a proper localization
+
+## Authentication and Authentication
+
+Authentication and Authorization are two very delicate arguments, this is especially true in distributed systems.
+It would be good to improve this POC to show how to achieve cross-domain auth with the help of technologies like [JSON Web Tokens](https://jwt.io/)
