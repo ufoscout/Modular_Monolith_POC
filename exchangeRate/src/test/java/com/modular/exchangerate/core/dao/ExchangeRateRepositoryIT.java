@@ -22,11 +22,11 @@ import java.util.List;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.modular.IntegrationTestBase;
+import com.modular.exchangerate.IntegrationTestBase;
 import com.modular.exchangerate.core.dao.ExchangeRateRepository;
 import com.modular.exchangerate.core.dao.entity.ExchangeRate;
 
-public class ExchangeRateRepositoryTest extends IntegrationTestBase {
+public class ExchangeRateRepositoryIT extends IntegrationTestBase {
 
 	@Autowired
 	private ExchangeRateRepository exchangeRateRepository;

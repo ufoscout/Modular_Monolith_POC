@@ -1,4 +1,4 @@
-package com.modular;
+package com.modular.exchangerate;
 
 import java.math.BigDecimal;
 import java.util.Date;

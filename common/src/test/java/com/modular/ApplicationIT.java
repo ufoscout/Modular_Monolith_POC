@@ -6,7 +6,7 @@ import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 
-public class ApplicationTest extends IntegrationTestBase {
+public class ApplicationIT extends IntegrationTestBase {
 
 	@Autowired
 	private ApplicationContext context;

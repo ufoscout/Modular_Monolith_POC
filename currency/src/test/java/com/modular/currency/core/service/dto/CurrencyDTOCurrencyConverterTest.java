@@ -21,7 +21,7 @@ import java.util.UUID;
 
 import org.junit.Test;
 
-import com.modular.UnitTestBase;
+import com.modular.currency.UnitTestBase;
 import com.modular.currency.core.dao.entity.Currency;
 import com.modular.currency.core.service.dto.CurrencyDTO;
 import com.modular.currency.core.service.dto.CurrencyDTOCurrencyConverter;

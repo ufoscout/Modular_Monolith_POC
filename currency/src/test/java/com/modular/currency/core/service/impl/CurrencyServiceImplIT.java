@@ -25,14 +25,14 @@ import javax.transaction.Transactional;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.modular.IntegrationTestBase;
+import com.modular.currency.IntegrationTestBase;
 import com.modular.currency.core.dao.CurrencyReporitory;
 import com.modular.currency.core.dao.entity.Currency;
 import com.modular.currency.core.service.CurrencyService;
 import com.modular.currency.core.service.dto.CurrencyDTO;
 
 @Transactional
-public class CurrencyServiceImplTest extends IntegrationTestBase {
+public class CurrencyServiceImplIT extends IntegrationTestBase {
 
 	@Autowired
 	private CurrencyService currencyService;

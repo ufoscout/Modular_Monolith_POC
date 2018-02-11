@@ -27,14 +27,14 @@ import javax.transaction.Transactional;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.modular.IntegrationTestBase;
+import com.modular.exchangerate.IntegrationTestBase;
 import com.modular.exchangerate.core.dao.ExchangeRateRepository;
 import com.modular.exchangerate.core.dao.entity.ExchangeRate;
 import com.modular.exchangerate.core.service.ExchangeRateService;
 import com.modular.exchangerate.core.service.dto.ExchangeRateDTO;
 
 @Transactional
-public class ExchangeRateServiceImplTest extends IntegrationTestBase {
+public class ExchangeRateServiceImplIT extends IntegrationTestBase {
 
 	@Autowired
 	private ExchangeRateService exchangeRateService;

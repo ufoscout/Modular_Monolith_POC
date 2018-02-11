@@ -27,12 +27,15 @@ import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
-import com.modular.IntegrationTestBase;
+import com.modular.exchangerate.IntegrationTestBase;
 import com.modular.exchangerate.core.service.ExchangeRateService;
 import com.modular.exchangerate.core.service.dto.ExchangeRateDTO;
+import com.modular.json.JsonSerializerService;
 
-public class ExchangeRateControllerTest extends IntegrationTestBase {
+public class ExchangeRateControllerIT extends IntegrationTestBase {
 
+	@Autowired
+	protected JsonSerializerService json;
 	@Autowired
 	private ExchangeRateService exchangeRateService;
 
@@ -44,7 +47,7 @@ public class ExchangeRateControllerTest extends IntegrationTestBase {
 
 	    getLogger().info("Received: [{}]", response.getBody());
 
-	    final List<ExchangeRateDTO> responseBody = fromJson(response.getBody(), List.class, ExchangeRateDTO.class);
+	    final List<ExchangeRateDTO> responseBody = json.fromJson(response.getBody(), List.class, ExchangeRateDTO.class);
 	    assertFalse(responseBody.isEmpty());
     }
 
