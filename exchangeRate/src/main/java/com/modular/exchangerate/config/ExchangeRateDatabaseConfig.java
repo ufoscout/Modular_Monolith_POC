@@ -19,7 +19,6 @@ import java.sql.SQLException;
 
 import javax.sql.DataSource;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
@@ -30,12 +29,15 @@ import liquibase.integration.spring.SpringLiquibase;
 @EnableTransactionManagement
 public class ExchangeRateDatabaseConfig {
 
-	@Autowired
-	private DataSource dataSource;
+	private final DataSource dataSource;
+
+	public ExchangeRateDatabaseConfig(DataSource dataSource) {
+		this.dataSource = dataSource;
+	}
 
 	@Bean
 	public SpringLiquibase exchangeRateLiquibase() throws SQLException {
-		SpringLiquibase liquibase = new SpringLiquibase();
+		final SpringLiquibase liquibase = new SpringLiquibase();
 		liquibase.setDataSource(dataSource);
 		liquibase.setChangeLog("classpath:exchangeRate/db/changelog/db.changelog-master.xml");
 		return liquibase;

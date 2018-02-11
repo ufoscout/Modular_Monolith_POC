@@ -17,20 +17,23 @@ package com.modular.currency.web.rest;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.modular.config.Globals;
 import com.modular.currency.core.service.CurrencyService;
 import com.modular.currency.core.service.dto.CurrencyDTO;
 
 @RestController
-@RequestMapping("/rest/currency")
+@RequestMapping(Globals.BASE_REST_PATH + "/currency")
 public class CurrencyController {
 
-	@Autowired
-	private CurrencyService currencyService;
+	private final CurrencyService currencyService;
+
+	public CurrencyController(CurrencyService currencyService) {
+		this.currencyService = currencyService;
+	}
 
 	@RequestMapping("/currencies")
 	public List<CurrencyDTO> home(@RequestParam(value = "filter", defaultValue="") String filter) {

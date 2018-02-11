@@ -27,6 +27,7 @@ import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
+import com.modular.config.Globals;
 import com.modular.exchangerate.IntegrationTestBase;
 import com.modular.exchangerate.core.service.ExchangeRateService;
 import com.modular.exchangerate.core.service.dto.ExchangeRateDTO;
@@ -42,7 +43,7 @@ public class ExchangeRateControllerIT extends IntegrationTestBase {
     @Test
     public void testGetExchangeRate() throws Exception {
 		final TestRestTemplate restTemplate = new TestRestTemplate();
-	    final ResponseEntity<String> response = restTemplate.getForEntity(serverUrl + "/rest/exchangeRate/rates?currencies=USD,EUR", String.class);
+	    final ResponseEntity<String> response = restTemplate.getForEntity(serverUrl + Globals.BASE_REST_PATH + "/exchangeRate/rates?currencies=USD,EUR", String.class);
 	    assertEquals( HttpStatus.OK, response.getStatusCode());
 
 	    getLogger().info("Received: [{}]", response.getBody());
@@ -54,7 +55,7 @@ public class ExchangeRateControllerIT extends IntegrationTestBase {
     @Test
     public void testGetConvert() throws Exception {
 		final TestRestTemplate restTemplate = new TestRestTemplate();
-	    final ResponseEntity<BigDecimal> response = restTemplate.getForEntity(serverUrl + "/rest/exchangeRate/convert/USD/EUR/100", BigDecimal.class);
+	    final ResponseEntity<BigDecimal> response = restTemplate.getForEntity(serverUrl + Globals.BASE_REST_PATH + "/exchangeRate/convert/USD/EUR/100", BigDecimal.class);
 	    assertEquals( HttpStatus.OK, response.getStatusCode());
 
 	    getLogger().info("Received: [{}]", response.getBody());

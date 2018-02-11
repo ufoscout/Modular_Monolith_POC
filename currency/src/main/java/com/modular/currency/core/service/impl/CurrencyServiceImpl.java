@@ -20,7 +20,6 @@ import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
@@ -34,15 +33,18 @@ import com.modular.currency.core.service.dto.CurrencyDTOCurrencyConverter;
 public class CurrencyServiceImpl implements CurrencyService {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(CurrencyServiceImpl.class);
-	@Autowired
-	private CurrencyReporitory currencyReporitory;
+	private final CurrencyReporitory currencyReporitory;
+
+	public CurrencyServiceImpl(CurrencyReporitory currencyReporitory) {
+		this.currencyReporitory = currencyReporitory;
+	}
 
 	@Override
 	@Cacheable(value = "CURRENCY", key = "{#root.targetClass,#root.methodName}")
 	public List<CurrencyDTO> getAllCurrencies() {
 		LOGGER.info("Return all currencies");
-		List<CurrencyDTO> result = new ArrayList<>();
-		for (Currency currency : currencyReporitory.findAll()) {
+		final List<CurrencyDTO> result = new ArrayList<>();
+		for (final Currency currency : currencyReporitory.findAll()) {
 			result.add(CurrencyDTOCurrencyConverter.convert(currency));
 		}
 		return result;
@@ -56,8 +58,8 @@ public class CurrencyServiceImpl implements CurrencyService {
 			return getAllCurrencies();
 		}
 
-		List<CurrencyDTO> result = new ArrayList<>();
-		for (Currency currency : currencyReporitory.findAllFiltered(filter)) {
+		final List<CurrencyDTO> result = new ArrayList<>();
+		for (final Currency currency : currencyReporitory.findAllFiltered(filter)) {
 			result.add(CurrencyDTOCurrencyConverter.convert(currency));
 		}
 		return result;

@@ -19,7 +19,6 @@ import java.sql.SQLException;
 
 import javax.sql.DataSource;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
@@ -30,8 +29,11 @@ import liquibase.integration.spring.SpringLiquibase;
 @EnableTransactionManagement
 public class CurrencyDatabaseConfig {
 
-	@Autowired
-	private DataSource dataSource;
+	private final DataSource dataSource;
+
+	public CurrencyDatabaseConfig(DataSource dataSource) {
+		this.dataSource = dataSource;
+	}
 
 	/**
 	 * Creates or updates the database for the currency module
@@ -40,7 +42,7 @@ public class CurrencyDatabaseConfig {
 	 */
 	@Bean
 	public SpringLiquibase currencyLiquibase() throws SQLException {
-		SpringLiquibase liquibase = new SpringLiquibase();
+		final SpringLiquibase liquibase = new SpringLiquibase();
 		liquibase.setDataSource(dataSource);
 		liquibase.setChangeLog("classpath:currency/db/changelog/db.changelog-master.xml");
 		return liquibase;

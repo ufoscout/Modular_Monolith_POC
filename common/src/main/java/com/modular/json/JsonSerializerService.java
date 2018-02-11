@@ -37,8 +37,25 @@ public interface JsonSerializerService {
 	 */
 	void toPrettyPrintedJson(Object object, OutputStream out);
 
-	<T> T fromJson(Class<T> clazz, String json);
+	/**
+	 *
+	 * Method to deserialize JSON content from given JSON content String.
+	 *
+	 * @param clazz
+	 * @param json
+	 * @return
+	 */
+	<T> T fromJson(String json, Class<T> clazz);
 
+	/**
+	 *
+	 * Method to deserialize JSON content from given JSON content String of a parameterized type.
+	 *
+	 * @param json
+	 * @param clazz
+	 * @param genericsArgs
+	 * @return
+	 */
 	<T> T fromJson(String json, Class<T> clazz, Class<?>... genericsArgs);
 
 }

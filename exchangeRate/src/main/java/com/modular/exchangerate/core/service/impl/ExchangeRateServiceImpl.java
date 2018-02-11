@@ -21,7 +21,6 @@ import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
@@ -36,16 +35,18 @@ import com.modular.exchangerate.core.service.dto.ExchangeRateDTOExchangeRateConv
 public class ExchangeRateServiceImpl implements ExchangeRateService {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(ExchangeRateServiceImpl.class);
+	private final ExchangeRateRepository exchangeRateRepository;
 
-	@Autowired
-	private ExchangeRateRepository exchangeRateRepository;
+	public ExchangeRateServiceImpl( ExchangeRateRepository exchangeRateRepository ) {
+		this.exchangeRateRepository = exchangeRateRepository;
+	}
 
 	@Override
 	@Cacheable(value = "EXCHANGE_RATE", key = "{#root.targetClass,#root.methodName,#currencyId}")
 	public List<ExchangeRateDTO> getExchangeRate(String currencyId) {
 		LOGGER.info("Return exchange rates for [{}]", currencyId);
-		List<ExchangeRateDTO> result = new ArrayList<>();
-		for (ExchangeRate er : exchangeRateRepository.findExchangeRates(currencyId)) {
+		final List<ExchangeRateDTO> result = new ArrayList<>();
+		for (final ExchangeRate er : exchangeRateRepository.findExchangeRates(currencyId)) {
 			result.add(ExchangeRateDTOExchangeRateConverter.convert(er));
 		}
 		return result;
@@ -54,7 +55,7 @@ public class ExchangeRateServiceImpl implements ExchangeRateService {
 	@Override
 	public BigDecimal convert(String from, String to, BigDecimal valueOf) {
 		LOGGER.info("Convert [{}} from {} to {}", valueOf, from, to);
-		ExchangeRate er = exchangeRateRepository.findOne(new ExchangeRateId(from, to));
+		final ExchangeRate er = exchangeRateRepository.findOne(new ExchangeRateId(from, to));
 		return valueOf.multiply(er.getExchangeRate());
 	}
 
@@ -68,8 +69,8 @@ public class ExchangeRateServiceImpl implements ExchangeRateService {
 			iterable = exchangeRateRepository.findExchangeRates(currencyList);
 		}
 
-		List<ExchangeRateDTO> result = new ArrayList<>();
-		for (ExchangeRate er : iterable) {
+		final List<ExchangeRateDTO> result = new ArrayList<>();
+		for (final ExchangeRate er : iterable) {
 			result.add(ExchangeRateDTOExchangeRateConverter.convert(er));
 		}
 		return result;

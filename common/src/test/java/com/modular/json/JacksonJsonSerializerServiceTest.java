@@ -50,7 +50,7 @@ public class JacksonJsonSerializerServiceTest extends UnitTestBase {
 
 		getLogger().info("JSON content: /n[{}]", json);
 
-		final SerializerBean fromJson = jsonSerializerService.fromJson(SerializerBean.class, json);
+		final SerializerBean fromJson = jsonSerializerService.fromJson(json, SerializerBean.class);
 		assertNotNull(fromJson);
 		assertEquals( message.getId(), fromJson.getId() );
 		assertEquals( message.getDate(), fromJson.getDate() );
@@ -76,7 +76,7 @@ public class JacksonJsonSerializerServiceTest extends UnitTestBase {
 
 		getLogger().info("JSON content: /n[{}]", json);
 
-		final SerializerBean fromJson = jsonSerializerService.fromJson(SerializerBean.class, json);
+		final SerializerBean fromJson = jsonSerializerService.fromJson(json, SerializerBean.class);
 		assertNotNull(fromJson);
 		assertEquals( message.getId(), fromJson.getId() );
 		assertEquals( message.getDate(), fromJson.getDate() );

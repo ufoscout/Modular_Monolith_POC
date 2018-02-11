@@ -12,7 +12,6 @@ import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.datatype.jdk8.Jdk8Module;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 
-
 /**
  *
  * @author Francesco Cina'
@@ -76,7 +75,7 @@ public class JacksonJsonSerializerService implements JsonSerializerService {
 	}
 
 	@Override
-	public <T> T fromJson(final Class<T> clazz, final String json) {
+	public <T> T fromJson(String json, final Class<T> clazz) {
 		try {
 			return mapper.readValue(json, clazz);
 		} catch (final IOException e) {

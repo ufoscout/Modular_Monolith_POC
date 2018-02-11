@@ -25,6 +25,7 @@ import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
+import com.modular.config.Globals;
 import com.modular.currency.IntegrationTestBase;
 import com.modular.currency.core.service.dto.CurrencyDTO;
 import com.modular.json.JsonSerializerService;
@@ -37,7 +38,7 @@ public class CurrencyControllerIT extends IntegrationTestBase {
 	@Test
 	public void test() {
 		final TestRestTemplate restTemplate = new TestRestTemplate();
-	    final ResponseEntity<String> response = restTemplate.getForEntity(serverUrl + "/rest/currency/currencies", String.class);
+	    final ResponseEntity<String> response = restTemplate.getForEntity(serverUrl + Globals.BASE_REST_PATH + "/currency/currencies", String.class);
 	    assertEquals( HttpStatus.OK, response.getStatusCode());
 
 	    getLogger().info("Received: [{}]", response.getBody());
