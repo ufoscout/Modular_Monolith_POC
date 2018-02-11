@@ -88,16 +88,26 @@ However, due to the fact that “currency”, “exchangeRate” and “frontend
 In this case, the deployment process becomes more powerful and more complex at the same time. For example a proxy will be needed to route the frontend calls to the correct micro service. At this point it is required to introduce a new layer to handle the requests routing; for example, Spring Cloud could be used to provide the needed components (e.g. service discovery, load balancing, configuration server).
 
 
-## Deployment strategy
+## Build and Deployment
+
+### Build the application
+
+Build the application with the command:
+> mvn clean install
+
+To force a deletion of all the cached frontend resources (e.g. node executable, nodejs modules, etc..), use the "cleanAll" profile:
+> mvn clean install -PcleanAll
+
+**BEWARE** the build was tested on linux systems; it was sometimes reported that the frontend part fails to build on some Windows OSes. When this happen the following two causes should be investigated:
+1. The permissions of the nodejs executable
+1. The total path lenght of the "node_modules" subfolders that could be longer that the max allowed
+
 
 ### Using the executable jar
 
-Once packaged with:
-> mvn clean verify
+Once built the application, enter the "build/target" folder and start the application with:
 
-Enter the "build" folder and start the application with:
-
-> java -jar ./target/com.modular.build.jar
+> java -jar ./com.modular.build.jar
 
 This starts a web server on port 8080. To start using the application, open a browser (the application has been tested with Firefox and Chrome) and access the URL:
 
@@ -113,7 +123,7 @@ Once the application is built, a docker image can be created from the source cod
 
 > mvn clean package docker:build
 
-This create a docker image named “modular/build”. A new instance of it can be started locally with:
+This creates a docker image named “modular/build”. A new instance of it can be started locally with:
 
 > docker run -p 8080:8080 modular/build
 
@@ -130,13 +140,13 @@ In addition, the frontend part can be launched from the "frontend/webapp" folder
 This requires nodejs 8.9.x to be installed on the local machine.
 
 
-# To be implemented and future improvements
+# Missing pieces and future improvements
 
 ## Backend
 
-The solution is not tuned to be used in a production environment; for example, the cache manager is a NoOperationCache. To make it ready for production, specific Spring profiles should be created (e.g. one for development, one for local deploy with an external database, one for AWS that uses Redis for the cache and Amazon RDS as database).
+The solution is not tuned to be used in a production environment; for example, the cache manager is a NoOperationCache. To make it ready for production, specific Spring profiles should be created (e.g. one for development, one for local deploy with an external database, one for AWS that uses Redis for the cache and Amazon RDS as a database).
 
-In addition, different storage systems should be taken into account instead of a database. In fact, the main service of the currency module performs a sort of full text search on the database using the “like” SQL operator; this operator is particularly slow because it executes a full table scan on each execution. In case of big datasets or high load, the system would greatly benefit from a search engine like ElasticSearch.
+In addition, different storage systems should be taken into account instead of a database. In fact, the main service of the currency module performs a sort of full-text search on the database using the “like” SQL operator; this operator is particularly slow because it executes a full table scan on each execution. In case of big data sets or high load, the system would greatly benefit from a search engine like ElasticSearch.
 
 Finally, the exchange rates could be gathered from a third party trusted source (e.g.
 [*http://finance.yahoo.com/webservice/v1/symbols/allcurrencies/quote*](http://finance.yahoo.com/webservice/v1/symbols/allcurrencies/quote)
@@ -144,9 +154,10 @@ Finally, the exchange rates could be gathered from a third party trusted source 
 
 ## Frontend
 
-The frontend code and architecture are not 
-On the frontend side there are multiple missing things:
+The frontend code and architecture are not be considered as valid examples. In particular, the architecture is primitive and mostly wrong. In fact, the frontend was written in a rush in a couple of hours to provide a UI for interacting with the backend.
+Finally, if I have time I would probably rewrite it with Angular Material that definitely better integrates with the Angular ecosystem.
 
--   The frontend should be localized through a proper translation system (e.g. using angular-translate);
--   To improve the global reactivity and to simplify the code management, the AngularJS services should return immutable objects wrapped into RxJs observables. This is, for example, required to in case, for example, of Flux architectures;
--   Unit testing for frontend has been omitted for lack of time, this is definitely a bad practice as the frontend should have a proper test coverage like the backend.
+Among the many missing pieces, the frontend misses:
+- A meaningful architecture (e.g. Flux, redux)
+- a good test coverage
+- a proper localization
