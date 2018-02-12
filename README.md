@@ -81,11 +81,16 @@ Even if the frontend is not written in Java, to simplify the packaging and the d
 
 Through the build module, the solution is packaged as a monolithic application as shown by this picture:
 
-!!! TODO: Insert picture !!!!
+![Monolithic Build](README_BuildMonolithic.jpg)
 
-However, due to the fact that “currency”, “exchangeRate” and “frontend” are completely independent self-contained applications, they can be easily repackaged and deployed independently to match a micro service architecture.
+
+However, due to the fact that “currency”, “exchangeRate” and “frontend” are completely independent self-contained applications, they can be easily repackaged and deployed independently to match a micro service architecture:
+
+![Multiple services build](README_BuildMicroservices.jpg)
 
 In this case, the deployment process becomes more powerful and more complex at the same time. For example a proxy will be needed to route the frontend calls to the correct micro service. At this point it is required to introduce a new layer to handle the requests routing; for example, Spring Cloud could be used to provide the needed components (e.g. service discovery, load balancing, configuration server).
+
+![Microservices deployment](README_BuildMicroserviceDeployment.jpg)
 
 
 ## Build and Deployment
