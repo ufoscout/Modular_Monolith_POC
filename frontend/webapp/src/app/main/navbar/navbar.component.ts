@@ -9,7 +9,7 @@ import {Component} from '@angular/core';
 })
 export class NavbarComponent {
   public isCollapsed = false;
-  public relativeDate: string;
-  public creationDate: number;
+  public relativeDate!: string;
+  public creationDate!: number;
 }
 

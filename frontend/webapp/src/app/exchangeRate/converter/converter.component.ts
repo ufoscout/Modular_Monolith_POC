@@ -15,10 +15,10 @@ export class ConverterComponent implements OnInit {
 
   paramTo: string = "";
 
-  currencyFrom: Currency;
+  currencyFrom!: Currency;
   amountFrom: number = 1;
   amountTo: string = "-";
-  exchangeRateTo: ExchangeRate;
+  exchangeRateTo!: ExchangeRate;
   currencyList: Currency[] = [];
   currencyFromExchangeRates: ExchangeRate[] = [];
 

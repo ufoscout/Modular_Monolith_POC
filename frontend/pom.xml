@@ -80,6 +80,9 @@
 						<artifactId>maven-clean-plugin</artifactId>
 						<configuration>
 							<filesets>
+                                <fileset>
+									<directory>${basedir}/webapp/coverage</directory>
+								</fileset>
 								<fileset>
 									<directory>${basedir}/webapp/dist</directory>
 								</fileset>

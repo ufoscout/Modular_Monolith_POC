@@ -13,8 +13,8 @@ import {ExchangeModule} from '../exchangeRate/exchange.module'
 @NgModule({
   imports: [
     BrowserModule,
-    NgbDropdownModule.forRoot(),
-    NgbCollapseModule.forRoot(),
+    NgbDropdownModule,
+    NgbCollapseModule,
     MainRoutingModule,
     ExchangeModule
   ],

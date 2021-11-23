@@ -1,7 +1,7 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import { FormsModule }   from '@angular/forms';
-import { HttpModule }    from '@angular/http';
+import { HttpClientModule }    from '@angular/common/http';
 
 import {ExchangeService} from './exchange.service';
 import {ExchangeRoutingModule} from './exchange.routing'
@@ -17,7 +17,7 @@ import {DisplayComponent} from './display/display.component'
     CurrencyModule,
     ExchangeRoutingModule,
     FormsModule,
-    HttpModule
+    HttpClientModule
   ],
   providers: [
     ExchangeService

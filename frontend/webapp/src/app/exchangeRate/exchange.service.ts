@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
-import { Headers, Http, URLSearchParams, RequestOptions } from '@angular/http';
-import 'rxjs/add/operator/toPromise';
+import { HttpClient, HttpParams } from '@angular/common/http';
+import { firstValueFrom } from 'rxjs';
 
-export class ExchangeRate {
+export type ExchangeRate = {
 	from: string;
 	to: string;
     exchangeRate: number;
@@ -13,50 +13,40 @@ export class ExchangeService {
 
   private controllerPath: string = '/rest/exchangeRate';
 
-  constructor(private http: Http) {}
+  constructor(private http: HttpClient) {}
 
   /**
    * Server call to retrieve the exchange rates
    */
-  getExchangeRates(currencies: string[]): Promise<ExchangeRate[]> {
+  async getExchangeRates(currencies: string[]): Promise<ExchangeRate[]> {
     console.log(`Get exchange rates`);
 
-    let params: URLSearchParams = new URLSearchParams();
-    params.set('_', '' + Date.now());
-    params.set('currencies', currencies.join(','))
+    let params = new HttpParams();
+    params = params.append('_', '' + Date.now());
+    params = params.append('currencies', currencies.join(','));
     
-    return this.http.get(this.controllerPath + "/rates", {
-        search: params
-      })
-      .toPromise()
-      .then(response => {
-        return response.json();
-      })
-      .catch(error => {
-        console.log(`Cannot load exchange rates`);
-      });
+    let request = this.http.get<ExchangeRate[]>(this.controllerPath + "/rates", {
+      params
+    });
+    
+    return await firstValueFrom(request);
 
   }
 
    /**
    * Server call to convert between two currencies
    */
-  convert(from: string, to: string, amount: number): Promise<number> {
+  async convert(from: string, to: string, amount: number): Promise<number> {
     console.log(`Convert from ${from} to ${to} amount ${amount}`);
 
-    let params: URLSearchParams = new URLSearchParams();
-    params.set('_', '' + Date.now());
+    let params = new HttpParams();
+    params = params.append('_', '' + Date.now());
     
-    return this.http.get(this.controllerPath + `/convert/${from}/${to}/${amount}`, {
-        search: params
-      })
-      .toPromise()
-      .then(response => {
-        return response.json();
-      })
-      .catch(error => {
-        console.log(`Cannot convert the data`);
-      });
+    let request = this.http.get<number>(this.controllerPath + `/convert/${from}/${to}/${amount}`, {
+        params
+    });
+
+    return await firstValueFrom(request);
 
   }
 

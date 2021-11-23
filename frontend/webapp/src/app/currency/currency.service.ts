@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
-import { Headers, Http, URLSearchParams, RequestOptions } from '@angular/http';
-import 'rxjs/add/operator/toPromise';
+import { HttpClient, HttpParams } from '@angular/common/http';
+import { firstValueFrom } from 'rxjs';
 
-export class Currency {
+export type Currency = {
 	id: string;
 	name: string;
 }
@@ -12,28 +12,23 @@ export class CurrenciesService {
 
   private currenciesControllerPath: string = '/rest/currency/currencies';
 
-  constructor(private http: Http) {}
+  constructor(private http: HttpClient) {}
 
   /**
    * Server call to retrieve the full list of available currencies
    */
-  getCurrencies(filter: string): Promise<Currency[]> {
+  async getCurrencies(filter: string): Promise<Currency[]> {
     console.log(`Get currencies list`);
 
-    let params: URLSearchParams = new URLSearchParams();
-    params.set('_', '' + Date.now());
-    params.set('filter', filter);
+    let params = new HttpParams();
+    params = params.append('_', '' + Date.now());
+    params = params.append('filter', filter);
     
-    return this.http.get(this.currenciesControllerPath, {
-      search: params
-    })
-      .toPromise()
-      .then(response => {
-        return response.json();
-      })
-      .catch(error => {
-        console.log(`Cannot load currencies data`);
-      });
+    let request = this.http.get<Currency[]>(this.currenciesControllerPath, {
+      params
+    });
+
+    return await firstValueFrom(request);
 
   }
 
