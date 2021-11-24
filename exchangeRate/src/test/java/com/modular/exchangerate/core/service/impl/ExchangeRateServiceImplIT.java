@@ -15,7 +15,7 @@
  ******************************************************************************/
 package com.modular.exchangerate.core.service.impl;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.*;
 
 import java.math.BigDecimal;
 import java.util.Arrays;
@@ -24,7 +24,7 @@ import java.util.UUID;
 
 import javax.transaction.Transactional;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.modular.exchangerate.IntegrationTestBase;

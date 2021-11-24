@@ -15,16 +15,16 @@
  ******************************************************************************/
 package com.modular.currency.core.dao;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.UUID;
 
 import javax.transaction.Transactional;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.modular.currency.IntegrationTestBase;
@@ -44,7 +44,7 @@ public class CurrencyReporitoryIT extends IntegrationTestBase {
 
 	@Test
 	public void currencyShouldBePresentInTheRepository() {
-		assertTrue(currencyReporitory.exists("USD"));
+		assertTrue(currencyReporitory.existsById("USD"));
 	}
 
 	@Test
@@ -52,7 +52,7 @@ public class CurrencyReporitoryIT extends IntegrationTestBase {
 		int count = currencyReporitory.countExisting();
 
 		String randomCurrency = UUID.randomUUID().toString().substring(0, 6);
-		assertFalse(currencyReporitory.exists(randomCurrency));
+		assertFalse(currencyReporitory.existsById(randomCurrency));
 
 		Currency newCurrency = new Currency();
 		newCurrency.setId(randomCurrency);

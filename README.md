@@ -22,13 +22,13 @@ The solution has been developed in a way that permits to deploy it as a classic 
 
 The backend is written in Java; REST end points are provided to expose the internal services.
 
-The frontend is an Angular Single Page Web Application written in TypeScript and transpiled to JavaScript through nodejs. Nodejs is not needed at runtime.
+The frontend is an Angular Single Page Web Application written in TypeScript and built nodejs. Nodejs is not needed at runtime.
 
 ## Requirements
 
-The only requirement needed to deploy and start the solution is a properly configured JVM 8. In addition, the port 8080 of the target machine must be available (a different port number can be configured).
+The only requirement needed to deploy and start the solution is a properly configured JVM 11. In addition, the port 8080 of the target machine must be available (a different port number can be configured).
 
-To build from the source code, the requirements are a JDK8 and maven 3. Please note that the very first build can take some additional minutes because the entire nodejs ecosystem has to be downloaded.
+To build from the source code, the requirements are a JDK11 and maven 3. Please note that the very first build can take some additional minutes because the entire nodejs ecosystem has to be downloaded.
 
 The maven build process executes the unit and integration tests for both the backend and the frontend; a recent Chrome browser is needed to execute the frontend tests in headless mode. 
 
@@ -39,7 +39,7 @@ On the backend, the unit and integration tests are executed on two different bui
 
 The following technologies have been used to implement the solution:
 
--   **Java 8:** the JDK version 1.8.0\_151 was used for the backend code;
+-   **Java:** the JDK version 11 was used for the backend code;
 -   **Spring Boot:** Spring Boot was selected as core framework for the backend. It provides a coherent and huge ecosystem to support the development of Java Enterprise applications. It promotes low coupling and great modularity thanks to its extensive support for Inversion Of Control and Dependency Injection;
 -   **Maven**: maven was selected as build and code management tool for the project. Even if it is mainly a Java build tool, Maven has a plugin based structure that permits to extend it to handle whatever type of task. In this project, among the others, the following two plugins are used:
     -   *frontend-maven-plugin*: as already stated, the frontend logic has been completely written in TypeScript. Nodejs is used to transpile, concatenate, minimize, test, collect and build the frontend to a production ready version. The frontend-maven-plugin permits the execution of nodejs tasks within the maven build process. In addition, it does not require nodejs to be installed on the build machine; it is therefore very useful in environment where only java is available (e.g. the development machine of a java developer that do not want to configure a full nodejs installation);

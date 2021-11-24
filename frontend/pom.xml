@@ -15,7 +15,7 @@
 	<build>
 		<resources>
 			<resource>
-				<directory>webapp/dist</directory>
+				<directory>webapp/dist/webapp</directory>
 				<targetPath>META-INF/resources</targetPath>
 			</resource>
 		</resources>

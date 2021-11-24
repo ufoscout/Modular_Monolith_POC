@@ -55,7 +55,7 @@ public class ExchangeRateServiceImpl implements ExchangeRateService {
 	@Override
 	public BigDecimal convert(String from, String to, BigDecimal valueOf) {
 		LOGGER.info("Convert [{}} from {} to {}", valueOf, from, to);
-		final ExchangeRate er = exchangeRateRepository.findOne(new ExchangeRateId(from, to));
+		final ExchangeRate er = exchangeRateRepository.findById(new ExchangeRateId(from, to)).get();
 		return valueOf.multiply(er.getExchangeRate());
 	}
 

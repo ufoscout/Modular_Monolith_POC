@@ -15,12 +15,12 @@
  ******************************************************************************/
 package com.modular.currency.core.service.impl;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.Arrays;
 import java.util.UUID;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
 import com.modular.currency.UnitTestBase;

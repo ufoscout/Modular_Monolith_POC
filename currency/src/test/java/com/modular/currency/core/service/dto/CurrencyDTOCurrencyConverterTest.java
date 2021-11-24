@@ -15,11 +15,11 @@
  ******************************************************************************/
 package com.modular.currency.core.service.dto;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.UUID;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import com.modular.currency.UnitTestBase;
 import com.modular.currency.core.dao.entity.Currency;
